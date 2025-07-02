@@ -3,7 +3,7 @@ import os
 import tweepy
 import html
 
-def handler(request, response):
+def handler(request):
     API_KEY = os.environ['TWITTER_API_KEY']
     API_SECRET = os.environ['TWITTER_API_SECRET']
     ACCESS_TOKEN = os.environ['TWITTER_ACCESS_TOKEN']
@@ -35,7 +35,7 @@ def handler(request, response):
         in_reply_to_tweet_id=first_tweet.data["id"]
     )
 
-    response.status_code = 200
-    response.body = "Thread postada com sucesso!"
-
-# Para Vercel Python, o nome da função precisa ser "handler"
+    return {
+        "statusCode": 200,
+        "body": "Thread postada com sucesso!"
+    }
